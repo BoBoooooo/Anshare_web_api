@@ -1,0 +1,67 @@
+C:\Anshare\ArchiveHA\Model\bin\Debug\Model.dll.config
+C:\Anshare\ArchiveHA\Model\bin\Debug\Model.dll
+C:\Anshare\ArchiveHA\Model\bin\Debug\Model.pdb
+C:\Anshare\ArchiveHA\Model\bin\Debug\EntityFramework.dll
+C:\Anshare\ArchiveHA\Model\bin\Debug\EntityFramework.xml
+C:\Anshare\ArchiveHA\Model\bin\Debug\zh-Hans\EntityFramework.resources.dll
+C:\Anshare\ArchiveHA\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
+C:\Anshare\ArchiveHA\Model\obj\Debug\Model.csproj.CoreCompileInputs.cache
+C:\Anshare\ArchiveHA\Model\obj\Debug\Model.dll
+C:\Anshare\ArchiveHA\Model\obj\Debug\Model.pdb
+C:\Anshare\SWXS\Model\bin\Debug\Model.dll.config
+C:\Anshare\SWXS\Model\bin\Debug\Model.dll
+C:\Anshare\SWXS\Model\bin\Debug\Model.pdb
+C:\Anshare\SWXS\Model\bin\Debug\EntityFramework.dll
+C:\Anshare\SWXS\Model\bin\Debug\EntityFramework.xml
+C:\Anshare\SWXS\Model\bin\Debug\zh-Hans\EntityFramework.resources.dll
+C:\Anshare\SWXS\Model\obj\Debug\Model.csproj.CoreCompileInputs.cache
+C:\Anshare\SWXS\Model\obj\Debug\Model.dll
+C:\Anshare\SWXS\Model\obj\Debug\Model.pdb
+C:\Anshare\New System\Model\bin\Debug\Model.dll.config
+C:\Anshare\New System\Model\bin\Debug\Model.dll
+C:\Anshare\New System\Model\bin\Debug\Model.pdb
+C:\Anshare\New System\Model\bin\Debug\EntityFramework.dll
+C:\Anshare\New System\Model\bin\Debug\EntityFramework.xml
+C:\Anshare\New System\Model\bin\Debug\zh-Hans\EntityFramework.resources.dll
+C:\Anshare\New System\Model\obj\Debug\Model.csproj.CoreCompileInputs.cache
+C:\Anshare\New System\Model\obj\Debug\Model.dll
+C:\Anshare\New System\Model\obj\Debug\Model.pdb
+C:\Anshare\SW3K\Model\bin\Debug\Model.dll.config
+C:\Anshare\SW3K\Model\bin\Debug\Model.dll
+C:\Anshare\SW3K\Model\bin\Debug\Model.pdb
+C:\Anshare\SW3K\Model\bin\Debug\EntityFramework.dll
+C:\Anshare\SW3K\Model\bin\Debug\EntityFramework.xml
+C:\Anshare\SW3K\Model\bin\Debug\zh-Hans\EntityFramework.resources.dll
+C:\Anshare\SW3K\Model\obj\Debug\Model.csproj.CoreCompileInputs.cache
+C:\Anshare\SW3K\Model\obj\Debug\Model.dll
+C:\Anshare\SW3K\Model\obj\Debug\Model.pdb
+C:\Users\Administrator\Desktop\asp.net_web_api\asp.net_web_api\WebApi\Model\bin\Debug\Model.dll.config
+C:\Users\Administrator\Desktop\asp.net_web_api\asp.net_web_api\WebApi\Model\bin\Debug\Model.dll
+C:\Users\Administrator\Desktop\asp.net_web_api\asp.net_web_api\WebApi\Model\bin\Debug\Model.pdb
+C:\Users\Administrator\Desktop\asp.net_web_api\asp.net_web_api\WebApi\Model\bin\Debug\EntityFramework.dll
+C:\Users\Administrator\Desktop\asp.net_web_api\asp.net_web_api\WebApi\Model\bin\Debug\EntityFramework.xml
+C:\Users\Administrator\Desktop\asp.net_web_api\asp.net_web_api\WebApi\Model\bin\Debug\zh-Hans\EntityFramework.resources.dll
+C:\Users\Administrator\Desktop\asp.net_web_api\asp.net_web_api\WebApi\Model\obj\Debug\Model.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Desktop\asp.net_web_api\asp.net_web_api\WebApi\Model\obj\Debug\Model.dll
+C:\Users\Administrator\Desktop\asp.net_web_api\asp.net_web_api\WebApi\Model\obj\Debug\Model.pdb
+C:\Users\Administrator\Desktop\asp.net_web_api\asp.net_web_api\WebApi\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Desktop\jwt_demo2\Model\bin\Debug\Model.dll.config
+C:\Users\Administrator\Desktop\jwt_demo2\Model\bin\Debug\Model.dll
+C:\Users\Administrator\Desktop\jwt_demo2\Model\bin\Debug\Model.pdb
+C:\Users\Administrator\Desktop\jwt_demo2\Model\bin\Debug\EntityFramework.dll
+C:\Users\Administrator\Desktop\jwt_demo2\Model\bin\Debug\EntityFramework.xml
+C:\Users\Administrator\Desktop\jwt_demo2\Model\bin\Debug\zh-Hans\EntityFramework.resources.dll
+C:\Users\Administrator\Desktop\jwt_demo2\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Desktop\jwt_demo2\Model\obj\Debug\Model.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Desktop\jwt_demo2\Model\obj\Debug\Model.dll
+C:\Users\Administrator\Desktop\jwt_demo2\Model\obj\Debug\Model.pdb
+C:\Users\Administrator\Desktop\Anshare_web_api\Model\bin\Debug\Model.dll.config
+C:\Users\Administrator\Desktop\Anshare_web_api\Model\bin\Debug\Model.dll
+C:\Users\Administrator\Desktop\Anshare_web_api\Model\bin\Debug\Model.pdb
+C:\Users\Administrator\Desktop\Anshare_web_api\Model\bin\Debug\EntityFramework.dll
+C:\Users\Administrator\Desktop\Anshare_web_api\Model\bin\Debug\EntityFramework.xml
+C:\Users\Administrator\Desktop\Anshare_web_api\Model\bin\Debug\zh-Hans\EntityFramework.resources.dll
+C:\Users\Administrator\Desktop\Anshare_web_api\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Desktop\Anshare_web_api\Model\obj\Debug\Model.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Desktop\Anshare_web_api\Model\obj\Debug\Model.dll
+C:\Users\Administrator\Desktop\Anshare_web_api\Model\obj\Debug\Model.pdb

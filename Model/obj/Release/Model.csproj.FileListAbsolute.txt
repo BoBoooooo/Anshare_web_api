@@ -1,0 +1,10 @@
+C:\Anshare\ArchiveHA\Model\bin\Release\Model.dll.config
+C:\Anshare\ArchiveHA\Model\bin\Release\Model.dll
+C:\Anshare\ArchiveHA\Model\bin\Release\Model.pdb
+C:\Anshare\ArchiveHA\Model\bin\Release\EntityFramework.dll
+C:\Anshare\ArchiveHA\Model\bin\Release\EntityFramework.xml
+C:\Anshare\ArchiveHA\Model\bin\Release\zh-Hans\EntityFramework.resources.dll
+C:\Anshare\ArchiveHA\Model\obj\Release\Model.csproj.CoreCompileInputs.cache
+C:\Anshare\ArchiveHA\Model\obj\Release\Model.dll
+C:\Anshare\ArchiveHA\Model\obj\Release\Model.pdb
+C:\Anshare\ArchiveHA\Model\obj\Release\Model.csprojResolveAssemblyReference.cache

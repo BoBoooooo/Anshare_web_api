@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ArchiveHAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="DBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Affix" EntityType="ArchiveHAModel.Affix" />
+    <EntitySet Name="Attendance" EntityType="ArchiveHAModel.Attendance" />
+    <EntitySet Name="Dept" EntityType="ArchiveHAModel.Dept" />
+    <EntitySet Name="Log" EntityType="ArchiveHAModel.Log" />
+    <EntitySet Name="Menu" EntityType="ArchiveHAModel.Menu" />
+    <EntitySet Name="Person" EntityType="ArchiveHAModel.Person" />
+    <EntitySet Name="Role" EntityType="ArchiveHAModel.Role" />
+    <EntitySet Name="RoleMenu" EntityType="ArchiveHAModel.RoleMenu" />
+    <EntitySet Name="Users" EntityType="ArchiveHAModel.Users" />
+  </EntityContainer>
+  <EntityType Name="Affix">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Guid" Nullable="false" />
+    <Property Name="MasterID" Type="Guid" />
+    <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FileName" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <Property Name="SaveName" Type="String" Nullable="false" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <Property Name="FileExtension" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <Property Name="ContentType" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <Property Name="Content" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="Timestamp" Type="DateTime" />
+    <Property Name="Prev" Type="Guid" />
+    <Property Name="Next" Type="Guid" />
+  </EntityType>
+  <EntityType Name="Attendance">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Guid" Nullable="false" />
+    <Property Name="PersonId" Type="Guid" />
+    <Property Name="StartTime" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="EndTime" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Date" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Vacation" Type="Int32" />
+    <Property Name="Vacation_Reason" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="TimeStamp" Type="DateTime" />
+  </EntityType>
+  <EntityType Name="Dept">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Guid" Nullable="false" />
+    <Property Name="DeptName" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <Property Name="ParentID" Type="Guid" />
+    <Property Name="Rank" Type="Int32" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="Timestamp" Type="DateTime" />
+  </EntityType>
+  <EntityType Name="Log">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Guid" Nullable="false" />
+    <Property Name="UserID" Type="Guid" />
+    <Property Name="OptTime" Type="DateTime" />
+    <Property Name="IP" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <Property Name="Region" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <Property Name="Account" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <Property Name="OptType" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <Property Name="Content" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Menu">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Guid" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <Property Name="Icon" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <Property Name="ParentID" Type="Guid" />
+    <Property Name="Url" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <Property Name="Sequence" Type="Int32" />
+    <Property Name="Timestamp" Type="DateTime" />
+  </EntityType>
+  <EntityType Name="Person">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Guid" Nullable="false" />
+    <Property Name="DeptID" Type="Guid" />
+    <Property Name="No" Type="Int32" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="WorkLevel" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Workduty" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="WorkUnit" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Gender" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="DOB" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Age" Type="Int32" />
+    <Property Name="Phone" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="IDCard" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="Timestamp" Type="DateTime" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Guid" Nullable="false" />
+    <Property Name="RoleName" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <Property Name="RoleAuthName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Rank" Type="Int32" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="Timestamp" Type="DateTime" />
+  </EntityType>
+  <EntityType Name="RoleMenu">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Guid" Nullable="false" />
+    <Property Name="RoleID" Type="Guid" />
+    <Property Name="MenuID" Type="Guid" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="Timestamp" Type="DateTime" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Guid" Nullable="false" />
+    <Property Name="DeptID" Type="Guid" />
+    <Property Name="RoleID" Type="Guid" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="RealName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Rank" Type="Int32" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="Timestamp" Type="DateTime" />
+  </EntityType>
+</Schema>
