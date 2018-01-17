@@ -119,6 +119,20 @@ namespace BLL
             }
         }
 
+        public Object Pagination(string sql,string pageSize,string pageIndex,T item)
+        {
+            using (var db = new DBEntities())
+            {
+
+                List<T> temp= db.Database.SqlQuery<T>(sql).ToList();
+
+                IEnumerable<T> ROWS = temp.Skip<T>((int.Parse(pageIndex) - 1) * int.Parse(pageSize)).Take<T>(int.Parse(pageSize));
+
+                    var a = new { rows = ROWS.ToList(),total = temp.Count()   };
+                return a;
+            }
+        }
+
         public void SqlCommand(string sql)
         {
             using (var db = new DBEntities())

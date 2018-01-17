@@ -23,11 +23,12 @@ namespace api.Controllers
         /// 拉取员工列表
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<PersonModel> PullUserList()
+        public IHttpActionResult PullUserList(string pageSize,string pageNumber)
         {
-
-            IEnumerable<PersonModel> temp = personmodel.SqlQuery("select u.*,t.DeptName from Person u join Dept t on (u.DeptID = t.ID) where u.IsDeleted = 0 order by u.No asc");
-            return temp;
+            string sql = "select u.*,t.DeptName from Person u join Dept t on (u.DeptID = t.ID) where u.IsDeleted = 0 order by u.No asc";
+          
+           Object  temp =   personmodel.Pagination(sql,pageSize,pageNumber,new PersonModel());
+            return Json<dynamic>(temp);
         }
         /// <summary>
         /// 拉取员工详情

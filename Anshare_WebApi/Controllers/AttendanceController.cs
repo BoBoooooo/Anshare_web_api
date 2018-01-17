@@ -22,12 +22,11 @@ namespace api.Controllers
         /// 拉取员工当日考勤列表
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<AttendanceModel> PullPersonAttenListWithToday()
+        public IHttpActionResult PullPersonAttenListWithToday(string pageSize,string pageNumber)
         {
             string sql = "select a.*,p.Name,p.No,t.DeptName from Attendance a  join Person p on (a.PersonId = p.ID ) join Dept t on (p.DeptID = t.ID)  and a.Date like '"+ DateTime.Now.ToString("yyyy-MM-dd") + "'";
-
-            IEnumerable<AttendanceModel> temp = attendancemodel.SqlQuery(sql);
-            return temp;
+            Object temp = personmodel.Pagination(sql, pageSize, pageNumber, new PersonModel());
+            return Json<dynamic>(temp);
         }
         /// <summary>
         /// 拉取员工详情

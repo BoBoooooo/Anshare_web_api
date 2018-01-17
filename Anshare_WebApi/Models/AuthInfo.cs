@@ -23,9 +23,14 @@ namespace api.Models
         /// </summary>
         public List<string> Roles { get; set; }
         /// <summary>
-        /// 是否是管理员
+        /// 记录角色ID
         /// </summary>
-        public bool IsAdmin { get; set; }
+        public Guid RoleID { get; set; }
+        /// <summary>
+        /// 权限返回标识码
+        /// </summary>
+        public int code { get; set; }
+
         /// <summary>
         /// 时间戳
         /// </summary>

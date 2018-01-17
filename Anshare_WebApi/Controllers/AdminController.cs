@@ -40,8 +40,18 @@ namespace api.Controllers
                         Role r = role.FindAuthByID(new Guid(temp.RoleID.ToString()));//找到用户对应的role auth列表
                         if (r != null)
                         {
-                            authInfo.Roles = r.RoleAuthName.Split(',').ToList();
-                            authInfo.RealName = temp.RealName;
+                            string str = string.Join(",", authInfo.Roles);
+                            if (r.ID != authInfo.RoleID || r.RoleAuthName != str)
+                            {
+                                authInfo.code = 401; //如果用户角色或者角色本身信息发生改变，返回401标识码清空cookie token
+
+                            }
+                            else {
+                                authInfo.Roles = r.RoleAuthName.Split(',').ToList();
+                                authInfo.RealName = temp.RealName;
+                                authInfo.code = 200; // 成功拉取用户信息
+                            }
+                   
                         }
 
                     }
@@ -83,14 +93,13 @@ namespace api.Controllers
         /// 拉取用户列表
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<UsersModel> PullUserList()
+        public IHttpActionResult PullUserList(string pageSize, string pageNumber)
         {
             IUsersModelService usersmodel = new UsersModelService();
 
-            IEnumerable<UsersModel> temp = usersmodel.SqlQuery("select u.*,r.RoleName,t.DeptName from Users u join Role r on (u.RoleID = r.ID) join Dept t on (u.DeptID = t.ID) where u.IsDeleted = 0 order by u.Rank asc");
-
-
-            return temp;
+            string sql = "select u.*,r.RoleName,t.DeptName from Users u join Role r on (u.RoleID = r.ID) join Dept t on (u.DeptID = t.ID) where u.IsDeleted = 0 order by u.Rank asc";
+            Object temp = usersmodel.Pagination(sql, pageSize, pageNumber, new UsersModel());
+            return Json<dynamic>(temp);
         }
         /// <summary>
         /// 拉取用户详情
@@ -172,14 +181,21 @@ namespace api.Controllers
         /// 拉取角色列表
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<Role> PullRoleList()
+        public IHttpActionResult PullRoleList(string pageSize , string pageNumber)
         {
 
-            IEnumerable<Role> temp = role.SqlQuery("select * from Role where IsDeleted = 0 order by Rank asc");
+            string sql =   "select * from Role where IsDeleted = 0 order by Rank asc";
 
-            return temp;
+            Object temp = usersmodel.Pagination(sql, pageSize, pageNumber, new UsersModel());
+            return Json<dynamic>(temp);
         }
+        public IHttpActionResult PullRoleList()
+        {
 
+            string sql = "select * from Role where IsDeleted = 0 order by Rank asc";
+            IEnumerable<Role> temp = role.SqlQuery(sql);
+            return Json<dynamic>(temp);
+        }
 
 
         /// <summary>
@@ -265,7 +281,7 @@ namespace api.Controllers
         }
 
         /// <summary>
-        /// 拉去部门树
+        /// 拉取部门树
         /// </summary>
         /// <returns></returns>
         public string PullDeptTree()

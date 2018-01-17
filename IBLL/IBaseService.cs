@@ -21,5 +21,8 @@ namespace IBLL
         T Find(Guid guid);
         IEnumerable<T> SqlQuery(string sql);
         DataTable SqlTable(Database database, string sql);
+
+        Object Pagination(string sql, string pageSize, string pageIndex, T item);
+
     }
 }
