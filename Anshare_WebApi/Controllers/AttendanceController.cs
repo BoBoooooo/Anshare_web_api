@@ -16,6 +16,8 @@ namespace api.Controllers
     {
         AttendanceService attendance = new AttendanceService();
         IPersonModelService personmodel = new PersonModelService();
+        IPersonService person = new PersonService();
+
         IAttendanceModelService attendancemodel = new AttendanceModelService();
 
         /// <summary>
@@ -37,7 +39,16 @@ namespace api.Controllers
         {
             string sql = "select a.* from Attendance a  where a.IsDeleted = 0 and a.PersonId in (select ID from Person where IsDeleted = 0 and ID  = '" + ID + "')";
             IEnumerable<Attendance> temp = attendance.SqlQuery(sql);
-            return temp.FirstOrDefault();
+            if (temp.Count() > 0)
+            {
+                return temp.FirstOrDefault();
+
+            }
+
+            else {
+                return new Attendance();
+
+            }
         }
         /// <summary>
         /// 删除员工当日考勤信息
@@ -55,28 +66,13 @@ namespace api.Controllers
         /// </summary>
         /// <param name="temp"></param>
         /// <returns></returns>
-        public Result SaveNewAtten(Person temp)
+        public void NewAtten(Attendance temp)
         {
-            try
-            {
-                string sql = "select a.* from Attendance a  where a.IsDeleted = 0 and a.PersonId in (select ID from Person where IsDeleted = 0 and Name  = '"+temp.Name+"') and Date like '%"+ DateTime.Now.ToString("yyyy-MM-dd")+"%'";
-                IEnumerable<Attendance> u = attendance.SqlQuery(sql);
-                if (u.Count()==0)
-                {
+
                     temp.ID = Guid.NewGuid();
                     temp.IsDeleted = false;
-                    attendance.Add(u.FirstOrDefault());
-                    return new Result(true, "新增成功", null);
-                }
-                else
-                {
-                    return new Result(false, "该工号今日考勤信息已存在", null);
-                }
-            }
-            catch (Exception e)
-            {
-                return new Result(false, e.Message, null);
-            }
+                    attendance.Add(temp);
+      
 
         }
         /// <summary>
@@ -84,18 +80,59 @@ namespace api.Controllers
         /// </summary>
         /// <param name="temp"></param>
         /// <returns></returns>
-        public Result UpdateAtten(Attendance temp)
+        public void UpdateAtten(Attendance temp)
         {
+         
+                attendance.Update(temp);
+            
+          
+
+        }
+        /// <summary>
+        /// api接口
+        /// </summary>
+        /// <param name="temp"></param>
+        public Result SaveAtten(Attendance temp)
+        {
+            string sql = "select * from Attendance   where IsDeleted = 0 and PersonId= '" + temp.PersonId + "' and Date like '%" + DateTime.Now.ToString("yyyy-MM-dd") + "%'";
+            IEnumerable<Attendance> u = attendance.SqlQuery(sql);
             try
             {
-                attendance.Update(temp);
-                return new Result(true, "更新成功", null);
+                if (u.Count() == 0)
+                {
+                    NewAtten(temp);
+                    return new Result(true, "新增成功", null);
+                }
+                else
+                {
+                    temp.ID = u.FirstOrDefault().ID;
+                    attendance.Update(temp);
+                    return new Result(true, "更新成功", null);
+                }
             }
             catch (Exception e)
             {
                 return new Result(false, e.Message, null);
             }
+        }
 
+        public IHttpActionResult PullPersonAttenByMonth(int No,int month) {
+          Person per =  person.FindByNo(No);
+            string start ="2018-"+ month.ToString() +"-01";
+            string end = "2018-" + month.ToString() + "-31";
+
+            if (per != null)
+            {
+                string sql = "select * from Attendance where IsDeleted = 0 and PersonId = '"+per.ID+ "' and Date >= "+start+" and Date <="+end;
+                var temp = new { };
+                return Json<dynamic>(temp);
+            }
+            else {
+                var error = new { Success = false, Message="工号不存在"};.
+                            return Json<dynamic>(error);
+
+            }
+     
         }
 
     }

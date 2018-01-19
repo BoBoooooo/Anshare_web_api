@@ -64,6 +64,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ArchiveHAModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="AttenCount.cs" />
     <Compile Include="Attendance.cs">
       <DependentUpon>ArchiveHAModel.tt</DependentUpon>
     </Compile>
