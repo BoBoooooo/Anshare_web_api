@@ -24,9 +24,9 @@ namespace api.Controllers
         /// 拉取员工当日考勤列表
         /// </summary>
         /// <returns></returns>
-        public IHttpActionResult PullPersonAttenListWithToday(string pageSize,string pageNumber)
+        public IHttpActionResult PullPersonAttenListWithToday(string pageSize, string pageNumber)
         {
-            string sql = "select a.*,p.Name,p.No,t.DeptName from Attendance a  join Person p on (a.PersonId = p.ID ) join Dept t on (p.DeptID = t.ID)  and a.Date like '"+ DateTime.Now.ToString("yyyy-MM-dd") + "'";
+            string sql = "select a.*,p.Name,p.No,t.DeptName from Attendance a  join Person p on (a.PersonId = p.ID ) join Dept t on (p.DeptID = t.ID)  and a.Date like '" + DateTime.Now.ToString("yyyy-MM-dd") + "'";
             Object temp = personmodel.Pagination(sql, pageSize, pageNumber, new PersonModel());
             return Json<dynamic>(temp);
         }
@@ -69,10 +69,10 @@ namespace api.Controllers
         public void NewAtten(Attendance temp)
         {
 
-                    temp.ID = Guid.NewGuid();
-                    temp.IsDeleted = false;
-                    attendance.Add(temp);
-      
+            temp.ID = Guid.NewGuid();
+            temp.IsDeleted = false;
+            attendance.Add(temp);
+
 
         }
         /// <summary>
@@ -82,10 +82,10 @@ namespace api.Controllers
         /// <returns></returns>
         public void UpdateAtten(Attendance temp)
         {
-         
-                attendance.Update(temp);
-            
-          
+
+            attendance.Update(temp);
+
+
 
         }
         /// <summary>
@@ -116,25 +116,54 @@ namespace api.Controllers
             }
         }
 
-        public IHttpActionResult PullPersonAttenByMonth(int No,int month) {
-          Person per =  person.FindByNo(No);
-            string start ="2018-"+ month.ToString() +"-01";
+        public IHttpActionResult PullPersonAttenByMonth(int No, int month) {
+            Person per = person.FindByNo(No);
+            string start = "2018-" + month.ToString() + "-01";
             string end = "2018-" + month.ToString() + "-31";
 
             if (per != null)
             {
-                string sql = "select * from Attendance where IsDeleted = 0 and PersonId = '"+per.ID+ "' and Date >= "+start+" and Date <="+end;
+                string sql = "select * from Attendance where IsDeleted = 0 and PersonId = '" + per.ID + "' and Date >= " + start + " and Date <=" + end;
                 var temp = new { };
                 return Json<dynamic>(temp);
             }
             else {
-                var error = new { Success = false, Message="工号不存在"};.
+                var error = new { Success = false, Message = "工号不存在" };
                             return Json<dynamic>(error);
 
             }
-     
+
+        }
+        /// <summary>
+        /// 查询个人月报
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="month"></param>
+        /// <returns></returns>
+        public IHttpActionResult SearchPersonByMonth(string name ,string month) {
+            string sql = "select a.Date,p.Name,p.No from Attendance a join Person p on (a.PersonId = p.ID) where  a.IsDeleted =0  and  a.Date like '%"+month+"%' and (p.Name like '%"+name+"%' or p.No like '%"+name+"%')";
+
+            int ealry_later = 0; int vaction = 0; int normal = 0;
+
+            IEnumerable<AttendanceModel> temp =attendancemodel.SqlQuery(sql);
+            foreach (AttendanceModel a in temp) {
+                if (a.Vacation == 1) {
+                    vaction++;
+                }
+                else {
+                    if (string.Compare(a.EndTime, "17:30:00") < 0 || string.Compare(a.StartTime, "8:30:00") > 0)
+                    {
+                        ealry_later++;
+
+                    }         
+                   else{
+                        normal++;
+                    }
+                }
+            }
+
+            return Json<dynamic>(temp);
         }
 
     }
-
 }
