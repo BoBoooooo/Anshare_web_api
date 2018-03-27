@@ -141,7 +141,7 @@ namespace api.Controllers
         /// <param name="month"></param>
         /// <returns></returns>
         public IHttpActionResult SearchPersonByMonth(string name ,string month) {
-            string sql = "select a.Date,p.Name,p.No from Attendance a join Person p on (a.PersonId = p.ID) where  a.IsDeleted =0  and  a.Date like '%"+month+"%' and (p.Name like '%"+name+"%' or p.No like '%"+name+"%')";
+            string sql = "select a.*,p.Name,p.No from Attendance a join Person p on (a.PersonId = p.ID) where  a.IsDeleted =0  and  a.Date like '%"+month+"%' and (p.Name like '%"+name+"%' or p.No like '%"+name+"%')";
 
             int ealry_later = 0; int vaction = 0; int normal = 0;
 
@@ -162,7 +162,13 @@ namespace api.Controllers
                 }
             }
 
-            return Json<dynamic>(temp);
+            var json = new {
+                vaction = vaction,
+                ealry_later = ealry_later,
+                normal = normal
+            };
+
+            return Json<dynamic>(json);
         }
 
     }
