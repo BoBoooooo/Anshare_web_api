@@ -28,6 +28,11 @@ namespace Model
         public string DeptName { get; set; }
         public int No { get; set; }
 
+        public string vaction { get; set; }
+        public string ealry_later { get; set; }
+        public string normal { get; set; }
+
+
 
     }
 }

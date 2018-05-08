@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ArchiveHAModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Affix">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="guid" Nullable="false" />
+    <Property Name="MasterID" Type="guid" />
+    <Property Name="Type" Type="varchar" MaxLength="50" />
+    <Property Name="FileName" Type="text" />
+    <Property Name="SaveName" Type="text" Nullable="false" />
+    <Property Name="FileExtension" Type="text" />
+    <Property Name="ContentType" Type="text" />
+    <Property Name="Content" Type="longblob" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+    <Property Name="Timestamp" Type="timestamp" Precision="0" />
+    <Property Name="Prev" Type="guid" />
+    <Property Name="Next" Type="guid" />
+  </EntityType>
+  <EntityType Name="Attendance">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="guid" Nullable="false" />
+    <Property Name="PersonId" Type="guid" />
+    <Property Name="StartTime" Type="varchar" MaxLength="255" />
+    <Property Name="EndTime" Type="varchar" MaxLength="255" />
+    <Property Name="Date" Type="varchar" MaxLength="255" />
+    <Property Name="Vacation" Type="int" />
+    <Property Name="Vacation_Reason" Type="varchar" MaxLength="255" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="TimeStamp" Type="timestamp" Precision="0" />
+  </EntityType>
+  <EntityType Name="Dept">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="guid" Nullable="false" />
+    <Property Name="DeptName" Type="text" />
+    <Property Name="ParentID" Type="guid" />
+    <Property Name="Rank" Type="int" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+    <Property Name="Timestamp" Type="timestamp" Precision="0" />
+  </EntityType>
+  <EntityType Name="Log">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="guid" Nullable="false" />
+    <Property Name="UserID" Type="guid" />
+    <Property Name="OptTime" Type="timestamp" Precision="0" />
+    <Property Name="IP" Type="text" />
+    <Property Name="Region" Type="text" />
+    <Property Name="Account" Type="text" />
+    <Property Name="OptType" Type="text" />
+    <Property Name="Content" Type="text" />
+  </EntityType>
+  <EntityType Name="Menu">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="guid" Nullable="false" />
+    <Property Name="Name" Type="text" />
+    <Property Name="Icon" Type="text" />
+    <Property Name="ParentID" Type="guid" />
+    <Property Name="Url" Type="text" />
+    <Property Name="Sequence" Type="int" />
+    <Property Name="Timestamp" Type="timestamp" Precision="0" />
+  </EntityType>
+  <EntityType Name="Person">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="guid" Nullable="false" />
+    <Property Name="DeptID" Type="guid" />
+    <Property Name="No" Type="int" />
+    <Property Name="Name" Type="varchar" MaxLength="255" />
+    <Property Name="WorkLevel" Type="varchar" MaxLength="255" />
+    <Property Name="Workduty" Type="varchar" MaxLength="255" />
+    <Property Name="WorkUnit" Type="varchar" MaxLength="255" />
+    <Property Name="Gender" Type="varchar" MaxLength="255" />
+    <Property Name="DOB" Type="varchar" MaxLength="255" />
+    <Property Name="Age" Type="int" />
+    <Property Name="Phone" Type="varchar" MaxLength="255" />
+    <Property Name="IDCard" Type="varchar" MaxLength="255" />
+    <Property Name="Address" Type="varchar" MaxLength="255" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="Timestamp" Type="timestamp" Precision="0" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="guid" Nullable="false" />
+    <Property Name="RoleName" Type="text" />
+    <Property Name="RoleAuthName" Type="varchar" MaxLength="255" />
+    <Property Name="Rank" Type="int" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+    <Property Name="Timestamp" Type="timestamp" Precision="0" />
+  </EntityType>
+  <EntityType Name="RoleMenu">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="guid" Nullable="false" />
+    <Property Name="RoleID" Type="guid" />
+    <Property Name="MenuID" Type="guid" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+    <Property Name="Timestamp" Type="timestamp" Precision="0" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="guid" Nullable="false" />
+    <Property Name="DeptID" Type="guid" />
+    <Property Name="RoleID" Type="guid" />
+    <Property Name="UserName" Type="varchar" MaxLength="50" />
+    <Property Name="Password" Type="varchar" MaxLength="50" />
+    <Property Name="RealName" Type="varchar" MaxLength="20" />
+    <Property Name="Rank" Type="int" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+    <Property Name="Timestamp" Type="timestamp" Precision="0" />
+  </EntityType>
+  <EntityContainer Name="ArchiveHAModelStoreContainer">
+    <EntitySet Name="Affix" EntityType="Self.Affix" Schema="KaoQin" store:Type="Tables" />
+    <EntitySet Name="Attendance" EntityType="Self.Attendance" Schema="KaoQin" store:Type="Tables" />
+    <EntitySet Name="Dept" EntityType="Self.Dept" Schema="KaoQin" store:Type="Tables" />
+    <EntitySet Name="Log" EntityType="Self.Log" Schema="KaoQin" store:Type="Tables" />
+    <EntitySet Name="Menu" EntityType="Self.Menu" Schema="KaoQin" store:Type="Tables" />
+    <EntitySet Name="Person" EntityType="Self.Person" Schema="KaoQin" store:Type="Tables" />
+    <EntitySet Name="Role" EntityType="Self.Role" Schema="KaoQin" store:Type="Tables" />
+    <EntitySet Name="RoleMenu" EntityType="Self.RoleMenu" Schema="KaoQin" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="KaoQin" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

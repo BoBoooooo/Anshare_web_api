@@ -161,14 +161,16 @@ namespace api.Controllers
                     }
                 }
             }
+            foreach (AttendanceModel a in temp)
+            {
+                a.vaction = vaction.ToString();
+                a.normal = normal.ToString();
+                a.ealry_later = ealry_later.ToString();
+                
+            }
+    
 
-            var json = new {
-                vaction = vaction,
-                ealry_later = ealry_later,
-                normal = normal
-            };
-
-            return Json<dynamic>(json);
+            return Json<dynamic>(temp);
         }
 
     }
