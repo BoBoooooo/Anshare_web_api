@@ -32,6 +32,10 @@ namespace Model
         public string Affix { get; set; }
 
         public string DeptName { get; set; }
-
+        public string StartTime { get; set; }
+        public string EndTime { get; set; }
+        public string Date { get; set; }
+        public Nullable<int> Vacation { get; set; }
+        public string Vacation_Reason { get; set; }
     }
 }

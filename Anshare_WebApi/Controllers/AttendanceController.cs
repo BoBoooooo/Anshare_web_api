@@ -26,7 +26,7 @@ namespace api.Controllers
         /// <returns></returns>
         public IHttpActionResult PullPersonAttenListWithToday(string pageSize, string pageNumber)
         {
-            string sql = "select a.*,p.Name,p.No,t.DeptName from Attendance a  join Person p on (a.PersonId = p.ID ) join Dept t on (p.DeptID = t.ID)  and a.Date like '" + DateTime.Now.ToString("yyyy-MM-dd") + "'";
+            string sql = "select a.*,p.Name,p.No,t.DeptName from Attendance a  join Person p on (a.PersonId = p.ID ) join Dept t on (p.DeptID = t.ID)  and a.Date like '%" + DateTime.Now.ToString("yyyy-MM-dd") + "%'";
             Object temp = personmodel.Pagination(sql, pageSize, pageNumber, new PersonModel());
             return Json<dynamic>(temp);
         }
@@ -154,7 +154,7 @@ namespace api.Controllers
                     if (string.Compare(a.EndTime, "17:30:00") < 0 || string.Compare(a.StartTime, "8:30:00") > 0)
                     {
                         ealry_later++;
-
+                        a.Vacation = 2;
                     }         
                    else{
                         normal++;
