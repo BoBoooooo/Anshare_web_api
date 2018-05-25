@@ -173,5 +173,45 @@ namespace api.Controllers
             return Json<dynamic>(temp);
         }
 
+
+
+        public IHttpActionResult SearchPersonByYear(string name)
+        {
+            string sql = "select a.*,p.Name,p.No from Attendance a join Person p on (a.PersonId = p.ID) where  a.IsDeleted =0  and  a.Date like '%2018%' and (p.Name like '%" + name + "%' or p.No like '%" + name + "%')";
+
+            int ealry_later = 0; int vaction = 0; int normal = 0;
+
+            IEnumerable<AttendanceModel> temp = attendancemodel.SqlQuery(sql);
+            foreach (AttendanceModel a in temp)
+            {
+                if (a.Vacation == 1)
+                {
+                    vaction++;
+                }
+                else
+                {
+                    if (string.Compare(a.EndTime, "17:30:00") < 0 || string.Compare(a.StartTime, "8:30:00") > 0)
+                    {
+                        ealry_later++;
+                        a.Vacation = 2;
+                    }
+                    else
+                    {
+                        normal++;
+                    }
+                }
+            }
+            foreach (AttendanceModel a in temp)
+            {
+                a.vaction = vaction.ToString();
+                a.normal = normal.ToString();
+                a.ealry_later = ealry_later.ToString();
+
+            }
+
+
+            return Json<dynamic>(temp);
+        }
+
     }
 }
