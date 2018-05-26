@@ -23,11 +23,15 @@ namespace api.Controllers
         /// 拉取员工列表
         /// </summary>
         /// <returns></returns>
-        public IHttpActionResult PullUserList(string pageSize,string pageNumber)
+        public IHttpActionResult PullUserList(string pageSize,string pageNumber,string criteria)
         {
-            string sql = "select u.*,t.DeptName from Person u join Dept t on (u.DeptID = t.ID) where u.IsDeleted = 0 order by u.No asc";
-          
-           Object  temp =   personmodel.Pagination(sql,pageSize,pageNumber,new PersonModel());
+            string sql = "";
+
+            if (criteria!=null&&criteria!="")
+                sql = "select u.*,t.DeptName from Person u join Dept t on (u.DeptID = t.ID) where u.IsDeleted = 0 and  (u.Name like '%" + criteria + "%' or u.No like '%" + criteria + "%') order by u.No asc";
+            else
+                sql = "select u.*,t.DeptName from Person u join Dept t on (u.DeptID = t.ID) where u.IsDeleted = 0 order by u.No asc";
+            Object  temp =   personmodel.Pagination(sql,pageSize,pageNumber,new PersonModel());
             return Json<dynamic>(temp);
         }
         /// <summary>

@@ -481,7 +481,7 @@
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
         </member>
-        <member name="M:api.Controllers.PersonController.PullUserList(System.String,System.String)">
+        <member name="M:api.Controllers.PersonController.PullUserList(System.String,System.String,System.String)">
             <summary>
             拉取员工列表
             </summary>

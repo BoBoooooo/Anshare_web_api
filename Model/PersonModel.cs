@@ -18,18 +18,11 @@ namespace Model
         public Nullable<System.Guid> DeptID { get; set; }
         public Nullable<int> No { get; set; }
         public string Name { get; set; }
-        public string WorkLevel { get; set; }
         public string Workduty { get; set; }
-        public string WorkUnit { get; set; }
         public string Gender { get; set; }
-        public string DOB { get; set; }
-        public Nullable<int> Age { get; set; }
         public string Phone { get; set; }
-        public string IDCard { get; set; }
-        public string Address { get; set; }
         public Nullable<bool> IsDeleted { get; set; }
         public Nullable<System.DateTime> Timestamp { get; set; }
-        public string Affix { get; set; }
 
         public string DeptName { get; set; }
         public string StartTime { get; set; }

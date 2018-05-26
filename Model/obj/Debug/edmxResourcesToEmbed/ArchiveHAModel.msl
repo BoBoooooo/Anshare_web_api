@@ -78,15 +78,10 @@
         <MappingFragment StoreEntitySet="Person">
           <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
           <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-          <ScalarProperty Name="Address" ColumnName="Address" />
-          <ScalarProperty Name="IDCard" ColumnName="IDCard" />
           <ScalarProperty Name="Phone" ColumnName="Phone" />
-          <ScalarProperty Name="Age" ColumnName="Age" />
-          <ScalarProperty Name="DOB" ColumnName="DOB" />
           <ScalarProperty Name="Gender" ColumnName="Gender" />
-          <ScalarProperty Name="WorkUnit" ColumnName="WorkUnit" />
+          <ScalarProperty Name="WorkTime" ColumnName="WorkTime" />
           <ScalarProperty Name="Workduty" ColumnName="Workduty" />
-          <ScalarProperty Name="WorkLevel" ColumnName="WorkLevel" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="No" ColumnName="No" />
           <ScalarProperty Name="DeptID" ColumnName="DeptID" />
