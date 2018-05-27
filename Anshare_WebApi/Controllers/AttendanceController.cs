@@ -24,9 +24,14 @@ namespace api.Controllers
         /// 拉取员工当日考勤列表
         /// </summary>
         /// <returns></returns>
-        public IHttpActionResult PullPersonAttenListWithToday(string pageSize, string pageNumber)
+        public IHttpActionResult PullPersonAttenListWithToday(string pageSize, string pageNumber, string criteria)
         {
-            string sql = "select a.*,p.Name,p.No,t.DeptName from Attendance a  join Person p on (a.PersonId = p.ID ) join Dept t on (p.DeptID = t.ID)  and a.Date like '%" + DateTime.Now.ToString("yyyy-MM-dd") + "%'";
+            string sql = "";
+            if (criteria != null && criteria != "")
+               
+                 sql = "select a.*,p.Name,p.No,t.DeptName from Attendance a  join Person p on (a.PersonId = p.ID ) join Dept t on (p.DeptID = t.ID)  and a.Date like '%" + DateTime.Now.ToString("yyyy-MM-dd") + "%' and  (p.Name like '%" + criteria + "%' or p.No like '%" + criteria + "%') ";
+            else
+            sql = "select a.*,p.Name,p.No,t.DeptName from Attendance a  join Person p on (a.PersonId = p.ID ) join Dept t on (p.DeptID = t.ID)  and a.Date like '%" + DateTime.Now.ToString("yyyy-MM-dd") + "%'";
             Object temp = personmodel.Pagination(sql, pageSize, pageNumber, new PersonModel());
             return Json<dynamic>(temp);
         }
@@ -35,10 +40,10 @@ namespace api.Controllers
         /// </summary>
         /// <param name="ID"></param>
         /// <returns></returns>
-        public Attendance PullAttenDetailByPerson(string ID)
+        public AttendanceModel PullAttenDetailByPerson(string ID)
         {
-            string sql = "select a.* from Attendance a  where a.IsDeleted = 0 and a.PersonId in (select ID from Person where IsDeleted = 0 and ID  = '" + ID + "')";
-            IEnumerable<Attendance> temp = attendance.SqlQuery(sql);
+            string sql = "select a.*,p.No from Attendance a join Person p on (a.PersonId  = p.ID)  where a.IsDeleted = 0 and a.ID = '"+ID+"'";
+            IEnumerable<AttendanceModel> temp = attendancemodel.SqlQuery(sql);
             if (temp.Count() > 0)
             {
                 return temp.FirstOrDefault();
@@ -46,7 +51,7 @@ namespace api.Controllers
             }
 
             else {
-                return new Attendance();
+                return new AttendanceModel();
 
             }
         }
@@ -80,10 +85,23 @@ namespace api.Controllers
         /// </summary>
         /// <param name="temp"></param>
         /// <returns></returns>
-        public void UpdateAtten(Attendance temp)
+        public void UpdateAtten(AttendanceModel temp)
         {
+            string sql = "select * from Person where No =" + temp.No;
 
-            attendance.Update(temp);
+            Person p = person.SqlQuery(sql).FirstOrDefault();
+
+
+            Attendance aaa = new Attendance();
+            aaa.ID = temp.ID;
+            aaa.StartTime = temp.StartTime;
+            aaa.EndTime = temp.EndTime;
+            aaa.IsDeleted = temp.IsDeleted;
+            aaa.PersonId = p.ID;
+            aaa.Vacation = temp.Vacation;
+            aaa.Vacation_Reason = temp.Vacation_Reason;
+            aaa.Date = temp.Date;
+            attendance.Update(aaa);
 
 
 
@@ -92,21 +110,51 @@ namespace api.Controllers
         /// api接口
         /// </summary>
         /// <param name="temp"></param>
-        public Result SaveAtten(Attendance temp)
+        public Result SaveAtten(AttendanceModel temp)
         {
-            string sql = "select * from Attendance   where IsDeleted = 0 and PersonId= '" + temp.PersonId + "' and Date like '%" + DateTime.Now.ToString("yyyy-MM-dd") + "%'";
+
+
+            string sql2 = "select * from Person where No =" + temp.No;
+
+            Person p = person.SqlQuery(sql2).FirstOrDefault();
+
+
+
+            string sql = "select * from Attendance   where IsDeleted = 0 and PersonId= '" + p.ID + "' and Date like '%" + DateTime.Now.ToString("yyyy-MM-dd") + "%'";
             IEnumerable<Attendance> u = attendance.SqlQuery(sql);
             try
             {
                 if (u.Count() == 0)
                 {
-                    NewAtten(temp);
+
+                    Attendance aaa = new Attendance();
+                    aaa.ID = Guid.NewGuid();
+                    aaa.StartTime = temp.StartTime;
+                    aaa.EndTime = temp.EndTime;
+                    aaa.IsDeleted = temp.IsDeleted;
+                    aaa.PersonId = p.ID;
+                    aaa.Vacation = temp.Vacation;
+                    aaa.Vacation_Reason = temp.Vacation_Reason;
+                    aaa.Date = temp.Date;
+                    NewAtten(aaa);
                     return new Result(true, "新增成功", null);
                 }
                 else
                 {
+
+                    Attendance aaa = new Attendance();
+                    aaa.ID = temp.ID;
+                    aaa.StartTime = temp.StartTime;
+                    aaa.EndTime = temp.EndTime;
+                    aaa.IsDeleted = temp.IsDeleted;
+                    aaa.PersonId = p.ID;
+                    aaa.Vacation = temp.Vacation;
+                    aaa.Vacation_Reason = temp.Vacation_Reason;
+                    aaa.Date = temp.Date;
+
+
                     temp.ID = u.FirstOrDefault().ID;
-                    attendance.Update(temp);
+                    attendance.Update(aaa);
                     return new Result(true, "更新成功", null);
                 }
             }

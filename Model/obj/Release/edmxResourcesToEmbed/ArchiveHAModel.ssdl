@@ -75,15 +75,10 @@
     <Property Name="DeptID" Type="guid" />
     <Property Name="No" Type="int" />
     <Property Name="Name" Type="varchar" MaxLength="255" />
-    <Property Name="WorkLevel" Type="varchar" MaxLength="255" />
     <Property Name="Workduty" Type="varchar" MaxLength="255" />
-    <Property Name="WorkUnit" Type="varchar" MaxLength="255" />
+    <Property Name="WorkTime" Type="varchar" MaxLength="255" />
     <Property Name="Gender" Type="varchar" MaxLength="255" />
-    <Property Name="DOB" Type="varchar" MaxLength="255" />
-    <Property Name="Age" Type="int" />
     <Property Name="Phone" Type="varchar" MaxLength="255" />
-    <Property Name="IDCard" Type="varchar" MaxLength="255" />
-    <Property Name="Address" Type="varchar" MaxLength="255" />
     <Property Name="IsDeleted" Type="bit" />
     <Property Name="Timestamp" Type="timestamp" Precision="0" />
   </EntityType>

@@ -515,7 +515,7 @@
             <param name="temp"></param>
             <returns></returns>
         </member>
-        <member name="M:api.Controllers.AttendanceController.PullPersonAttenListWithToday(System.String,System.String)">
+        <member name="M:api.Controllers.AttendanceController.PullPersonAttenListWithToday(System.String,System.String,System.String)">
             <summary>
             拉取员工当日考勤列表
             </summary>
@@ -542,14 +542,14 @@
             <param name="temp"></param>
             <returns></returns>
         </member>
-        <member name="M:api.Controllers.AttendanceController.UpdateAtten(Model.Attendance)">
+        <member name="M:api.Controllers.AttendanceController.UpdateAtten(Model.AttendanceModel)">
             <summary>
             更新员工当日考勤信息
             </summary>
             <param name="temp"></param>
             <returns></returns>
         </member>
-        <member name="M:api.Controllers.AttendanceController.SaveAtten(Model.Attendance)">
+        <member name="M:api.Controllers.AttendanceController.SaveAtten(Model.AttendanceModel)">
             <summary>
             api接口
             </summary>
